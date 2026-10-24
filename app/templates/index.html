@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarıgüzel Teklif | Endüstriyel CNC Lazer & Sac Metal SaaS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #060911; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .blueprint-grid {
+            background-color: #080d1a;
+            background-image: 
+                linear-gradient(to right, rgba(30, 41, 59, 0.35) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 41, 59, 0.35) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen selection:bg-orange-500 selection:text-white">
+
+    <!-- ÜST KURUMSAL NAVBAR -->
+    <div class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur sticky top-0 z-30">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-3.5">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-500 via-orange-600 to-amber-700 flex items-center justify-center font-extrabold text-white text-xl shadow-lg shadow-orange-500/25 border border-orange-400/30">
+                    ST
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2.5">
+                        <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-white">
+                            SARIGÜZEL <span class="text-orange-500">TEKLİF</span>
+                        </h1>
+                        <span class="text-[10px] font-mono font-semibold uppercase px-2 py-0.5 rounded-md bg-orange-500/10 text-orange-400 border border-orange-500/25">
+                            CAD/CAM SaaS v4.0
+                        </span>
+                        <span class="hidden sm:inline-flex items-center text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            ● 0ms Canlı Motor Aktif
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400">2D DXF Geometrik Analiz, Dinamik Malzeme Matrisi ve Kurumsal Teklif Platformu</p>
+                </div>
+            </div>
+
+            <!-- Kurumsal Sistem Durumu -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-lg px-3.5 py-2 text-xs text-slate-300 font-mono flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>ISO 9013 Hassas Kesim Motoru</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+        <!-- ÜST FİRMA & MÜŞTERİ BİLGİ BARI -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 grid grid-cols-1 md:grid-cols-3 gap-4 shadow-lg">
+            <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Teklif Veren Atölye / Firma Adı</label>
+                <input type="text" id="atolyeAdi" value="Sarıgüzel Lazer & Sac Metal San. Tic. Ltd. Şti." class="w-full bg-slate-950 border border-slate-800 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-white font-medium outline-none transition">
+            </div>
+            <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Müşteri / Alıcı Firma Ünvanı</label>
+                <input type="text" id="musteriAdi" value="Anadolu Makina ve Savunma Sanayi A.Ş." placeholder="Müşteri Firma Adı" class="w-full bg-slate-950 border border-slate-800 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-white font-medium outline-none transition">
+            </div>
+            <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Teslimat & Teklif Notu (PDF'te Görünür)</label>
+                <input type="text" id="teklifNotu" value="3 iş günü içinde fabrika teslim. ISO 9013 standart lazer kesim." class="w-full bg-slate-950 border border-slate-800 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-slate-300 outline-none transition">
+            </div>
+        </div>
+
+        <!-- 6'LI ENDÜSTRİYEL KPI KARTLARI -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
+            <div class="bg-slate-900 border border-slate-800/90 rounded-xl p-3.5">
+                <span class="text-[11px] font-medium text-slate-400 block">Toplam Kalem / Adet</span>
+                <span id="kpiKalem" class="text-base font-extrabold text-white font-mono mt-1 block">0 Kalem (0 Adet)</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800/90 rounded-xl p-3.5">
+                <span class="text-[11px] font-medium text-slate-400 block">Toplam Kesim & Delme</span>
+                <span id="kpiKesim" class="text-base font-extrabold text-orange-400 font-mono mt-1 block">0.0 m / 0 delik</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800/90 rounded-xl p-3.5">
+                <span class="text-[11px] font-medium text-slate-400 block">Toplam Lazer Süresi</span>
+                <span id="kpiSure" class="text-base font-extrabold text-emerald-400 font-mono mt-1 block">0.0 dk</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800/90 rounded-xl p-3.5">
+                <span class="text-[11px] font-medium text-slate-400 block">Toplam Brüt Ağırlık</span>
+                <span id="kpiAgirlik" class="text-base font-extrabold text-sky-400 font-mono mt-1 block">0.00 kg</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800/90 rounded-xl p-3.5">
+                <span class="text-[11px] font-medium text-slate-400 block">Net Atölye Kârı</span>
+                <span id="kpiNetKar" class="text-base font-extrabold text-amber-400 font-mono mt-1 block">0.00 TL</span>
+            </div>
+            <div class="bg-gradient-to-br from-orange-950/90 via-slate-900 to-slate-900 border border-orange-500/40 rounded-xl p-3.5 shadow-lg shadow-orange-950/20">
+                <span class="text-[11px] font-semibold text-orange-300 block">Genel Toplam (KDV Dahil)</span>
+                <span id="kpiGenelToplam" class="text-lg font-extrabold text-orange-400 font-mono mt-0.5 block">0.00 TL</span>
+            </div>
+        </div>
+
+        <!-- ANA ÇALIŞMA ALANI -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- SOL PANEL: DOSYA YÜKLEME & MÜHENDİSLİK PARAMETRELERİ -->
+            <div class="lg:col-span-4 space-y-5">
+
+                <!-- 1. DXF YÜKLEME MERKEZİ -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-300 flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                            <span>1. CAD / DXF Yükleme Merkezi</span>
+                        </h2>
+                        <label class="flex items-center space-x-1.5 text-[11px] text-slate-400 cursor-pointer select-none">
+                            <input type="checkbox" id="appendMode" checked class="rounded bg-slate-950 border-slate-700 text-orange-500 focus:ring-0">
+                            <span>Listeye Ekle Modu</span>
+                        </label>
+                    </div>
+
+                    <div id="dropzone" class="border-2 border-dashed border-slate-700 hover:border-orange-500 rounded-xl p-5 text-center transition bg-slate-950/70">
+                        <svg class="w-8 h-8 mx-auto text-orange-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                        <p class="text-xs font-semibold text-slate-200 mb-3">DXF Dosyalarını Buraya Sürükleyin veya Seçin</p>
+                        <input type="file" id="dxfFiles" accept=".dxf" multiple
+                            class="block w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-3.5 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-orange-600 file:text-white hover:file:bg-orange-500 cursor-pointer bg-slate-900 border border-slate-800 rounded-lg p-1.5">
+                    </div>
+                </div>
+
+                <!-- 2. MALZEME & LAZER KESİM MATRİSİ -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-300 flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+                            <span>2. Malzeme & Lazer Matrisi</span>
+                        </h2>
+                        <span id="gasBadge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-500/30">
+                            Gaz: O2 (Oksijen)
+                        </span>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Sac Malzeme Kalitesi</label>
+                        <select id="malzemeTuru" class="w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs font-semibold text-white outline-none">
+                            <option value="dkp">DKP / S235JR (St37 Siyah Sac - 7.85 g/cm³)</option>
+                            <option value="s355">S355JR (St52 Yapı Çeliği - 7.85 g/cm³)</option>
+                            <option value="paslanmaz304">Paslanmaz Çelik AISI 304 (7.93 g/cm³)</option>
+                            <option value="paslanmaz316">Paslanmaz Çelik AISI 316L (7.98 g/cm³)</option>
+                            <option value="aluminyum">Alüminyum 5754 / 6061 (2.70 g/cm³)</option>
+                            <option value="galvaniz">Galvaniz Sac DX51D (7.85 g/cm³)</option>
+                            <option value="hardox450">Hardox 450 Aşınma Sacı (7.85 g/cm³)</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Sac Kalınlığı (mm)</label>
+                            <select id="sacKalinlik" class="w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs font-semibold text-white outline-none font-mono">
+                                <option value="1.0">1.0 mm</option>
+                                <option value="1.5">1.5 mm</option>
+                                <option value="2.0" selected>2.0 mm</option>
+                                <option value="3.0">3.0 mm</option>
+                                <option value="4.0">4.0 mm</option>
+                                <option value="5.0">5.0 mm</option>
+                                <option value="6.0">6.0 mm</option>
+                                <option value="8.0">8.0 mm</option>
+                                <option value="10.0">10.0 mm</option>
+                                <option value="12.0">12.0 mm</option>
+                                <option value="15.0">15.0 mm</option>
+                                <option value="20.0">20.0 mm</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Sac Kg Fiyatı (TL/kg)</label>
+                            <input type="number" id="sacKgFiyat" value="35.0" step="0.5" class="live-param w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-white font-mono outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Kesim Hızı (m/dk)</label>
+                            <input type="number" id="kesimHiz" value="4.50" step="0.1" class="live-param w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-emerald-400 font-mono outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Patlatma Süresi (sn)</label>
+                            <input type="number" id="delmeSure" value="0.5" step="0.1" class="live-param w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-emerald-400 font-mono outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Fire Oranı (%)</label>
+                            <input type="number" id="fireOrani" value="15" step="1" class="live-param w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-white font-mono outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Tezgâh Saat Ücreti (TL)</label>
+                            <input type="number" id="tezgahUcret" value="1800" step="50" class="live-param w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-white font-mono outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Kâr Marjı (%)</label>
+                            <input type="number" id="karMarj" value="25" step="1" class="live-param w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-amber-400 font-bold font-mono outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">KDV Oranı (%)</label>
+                            <input type="number" id="kdvOrani" value="20" step="1" class="live-param w-full bg-slate-950 border border-slate-700 focus:border-orange-500 rounded-lg px-3 py-2 text-xs text-white font-mono outline-none">
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="ozgulAgirlik" value="7.85">
+                </div>
+            </div>
+
+            <!-- SAĞ PANEL: CAM ÖNİZLEME, MALİYET DAĞILIMI VE TEKLİF TABLOSU -->
+            <div class="lg:col-span-8 space-y-5">
+
+                <!-- 2D CNC CAM ÖNİZLEME & SEÇİLİ PARÇA ANALİZİ -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-300">2D CNC Kesim Yolu Önizleme:</span>
+                            <span id="activePartName" class="text-xs font-mono font-bold text-orange-400 bg-orange-500/10 px-2.5 py-0.5 rounded border border-orange-500/20">Parça Bekleniyor...</span>
+                        </div>
+                        <div class="flex items-center space-x-4 text-[11px] text-slate-400">
+                            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-orange-500 inline-block"></span><span>Dış Kontur</span></span>
+                            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span><span>İç Boşaltma / Delik</span></span>
+                            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span><span>Patlatma (Pierce)</span></span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                        <div id="svgContainer" class="md:col-span-8 h-60 blueprint-grid rounded-xl border border-slate-800 p-4 flex items-center justify-center">
+                            <p class="text-xs text-slate-500 font-mono">Sol panelden DXF dosyalarını sürükleyin veya seçin</p>
+                        </div>
+                        <div class="md:col-span-4 bg-slate-950 border border-slate-800/90 rounded-xl p-4 space-y-2.5 text-xs">
+                            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800 pb-1.5">Seçili Parça Birim Analizi</div>
+                            <div class="flex justify-between"><span class="text-slate-400">Plaka Ebadı:</span><span id="detEbat" class="font-mono text-white">-</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Lazer Kesim Yolu:</span><span id="detKesim" class="font-mono text-orange-400">-</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Patlatma Sayısı:</span><span id="detDelik" class="font-mono text-emerald-400">-</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Birim Kesim Süresi:</span><span id="detSure" class="font-mono text-slate-200">-</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Brüt Ağırlık:</span><span id="detAgirlik" class="font-mono text-sky-400">-</span></div>
+                            <div class="border-t border-slate-800 pt-2 space-y-1">
+                                <div class="flex justify-between text-[11px]"><span class="text-slate-500">Sac Hammadde:</span><span id="detMalzemeTl" class="font-mono text-slate-300">-</span></div>
+                                <div class="flex justify-between text-[11px]"><span class="text-slate-500">Lazer İşçilik:</span><span id="detIscilikTl" class="font-mono text-slate-300">-</span></div>
+                                <div class="flex justify-between font-bold text-xs pt-1"><span class="text-orange-400">Birim Satış Fiyatı:</span><span id="detSatisTl" class="font-mono text-orange-400">-</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MALİYET DAĞILIM ÇUBUĞU -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="font-bold text-slate-300 uppercase tracking-wider">Toplam Teklif Maliyet & Kâr Dağılımı</span>
+                        <div class="flex space-x-4 text-[11px] font-mono">
+                            <span id="barLabelMat" class="text-sky-400">Hammadde: %0</span>
+                            <span id="barLabelLab" class="text-purple-400">Lazer İşçilik: %0</span>
+                            <span id="barLabelProf" class="text-emerald-400">Net Kâr: %0</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden flex border border-slate-800">
+                        <div id="barMat" class="bg-sky-500 h-full transition-all duration-300" style="width: 50%"></div>
+                        <div id="barLab" class="bg-purple-500 h-full transition-all duration-300" style="width: 30%"></div>
+                        <div id="barProf" class="bg-emerald-500 h-full transition-all duration-300" style="width: 20%"></div>
+                    </div>
+                </div>
+
+                <!-- PARÇA LİSTESİ & TEKLİF TABLOSU -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                        <div class="flex items-center space-x-3">
+                            <h3 class="text-sm font-extrabold text-white uppercase tracking-wider">Parça Listesi ve Adet Hesaplama</h3>
+                            <button id="clearListBtn" type="button" class="text-[11px] text-slate-400 hover:text-rose-400 bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-md transition">
+                                Listeyi Temizle
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button id="csvBtn" type="button" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2 px-3.5 rounded-lg border border-slate-700 transition">
+                                📊 Excel (CSV) İndir
+                            </button>
+                            <button id="pdfBtn" type="button" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold py-2 px-4 rounded-lg shadow-lg shadow-emerald-600/20 transition">
+                                📄 Resmi Kurumsal Teklif PDF İndir
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-800 text-[11px] text-slate-400 uppercase">
+                                    <th class="py-2.5 px-2">#</th>
+                                    <th class="py-2.5 px-2">Parça / DXF Adı</th>
+                                    <th class="py-2.5 px-2">Ebat (mm)</th>
+                                    <th class="py-2.5 px-2">Kesim / Delik</th>
+                                    <th class="py-2.5 px-2">Birim Kg</th>
+                                    <th class="py-2.5 px-2 text-center">Üretim Adedi</th>
+                                    <th class="py-2.5 px-2 text-right">Birim Fiyat</th>
+                                    <th class="py-2.5 px-2 text-right">Satır Toplamı</th>
+                                    <th class="py-2.5 px-1"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="partsTableBody" class="divide-y divide-slate-800/60 text-xs">
+                                <tr>
+                                    <td colspan="9" class="py-10 text-center text-slate-500">
+                                        Henüz parça yüklenmedi. Sol paneldeki CAD / DXF Yükleme Merkezinden dosyalarınızı seçerek analizi başlatabilirsiniz.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const MATERIAL_MATRIX = {
+            dkp:          { name: "DKP / S235JR (St37) Sac", density: 7.85, price: 35.0,  speedFactor: 1.00, gas: "O2 (Oksijen)" },
+            s355:         { name: "S355JR (St52) Yapı Çeliği", density: 7.85, price: 42.0, speedFactor: 0.90, gas: "O2 (Oksijen)" },
+            paslanmaz304: { name: "Paslanmaz Çelik (AISI 304)", density: 7.93, price: 145.0, speedFactor: 0.75, gas: "N2 (Yüksek Basınç Azot)" },
+            paslanmaz316: { name: "Paslanmaz Çelik (AISI 316L)", density: 7.98, price: 185.0, speedFactor: 0.70, gas: "N2 (Yüksek Basınç Azot)" },
+            aluminyum:    { name: "Alüminyum (5754 / 6061)", density: 2.70, price: 160.0, speedFactor: 1.15, gas: "N2 (Azot)" },
+            galvaniz:     { name: "Galvaniz Sac (DX51D)", density: 7.85, price: 40.0, speedFactor: 0.95, gas: "Hava / N2" },
+            hardox450:    { name: "Hardox 450 Aşınma Sacı", density: 7.85, price: 95.0, speedFactor: 0.65, gas: "O2 (Oksijen)" }
+        };
+
+        const THICKNESS_PRESETS = {
+            "1.0":  { speed: 8.5, pierce: 0.2 },
+            "1.5":  { speed: 6.2, pierce: 0.3 },
+            "2.0":  { speed: 4.5, pierce: 0.5 },
+            "3.0":  { speed: 3.2, pierce: 0.8 },
+            "4.0":  { speed: 2.5, pierce: 1.0 },
+            "5.0":  { speed: 2.0, pierce: 1.2 },
+            "6.0":  { speed: 1.6, pierce: 1.5 },
+            "8.0":  { speed: 1.2, pierce: 2.0 },
+            "10.0": { speed: 0.85, pierce: 2.8 },
+            "12.0": { speed: 0.65, pierce: 3.5 },
+            "15.0": { speed: 0.45, pierce: 4.5 },
+            "20.0": { speed: 0.30, pierce: 6.0 }
+        };
+
+        let parcaListesi = [];
+        let activeIndex = 0;
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, character => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[character]);
+        }
+
+        function csvCell(value) {
+            let text = String(value ?? "");
+            if (/^[=+\-@]/.test(text)) text = "'" + text;
+            return `"${text.replace(/"/g, '""')}"`;
+        }
+
+        const malzemeSelect = document.getElementById("malzemeTuru");
+        const kalinlikSelect = document.getElementById("sacKalinlik");
+        const kgFiyatInput = document.getElementById("sacKgFiyat");
+        const kesimHizInput = document.getElementById("kesimHiz");
+        const delmeSureInput = document.getElementById("delmeSure");
+        const ozgulInput = document.getElementById("ozgulAgirlik");
+        const gasBadge = document.getElementById("gasBadge");
+        const fileInput = document.getElementById("dxfFiles");
+        const dropzone = document.getElementById("dropzone");
+
+        // 0ms İstemci Tarafı Canlı Mühendislik Hesaplaması
+        function recalculateAllLive() {
+            const kalinlik = parseFloat(kalinlikSelect.value) || 2.0;
+            const ozgul = parseFloat(ozgulInput.value) || 7.85;
+            const kgFiyat = parseFloat(kgFiyatInput.value) || 35.0;
+            const kesimHiz = Math.max(parseFloat(kesimHizInput.value) || 4.5, 0.05);
+            const delmeSure = parseFloat(delmeSureInput.value) || 0.5;
+            const fireOrani = parseFloat(document.getElementById("fireOrani").value) || 15.0;
+            const tezgahUcret = parseFloat(document.getElementById("tezgahUcret").value) || 1800.0;
+            const karMarj = parseFloat(document.getElementById("karMarj").value) || 25.0;
+            const kdvOrani = parseFloat(document.getElementById("kdvOrani").value) || 20.0;
+
+            let topAgirlik = 0, topKesimM = 0, topDelik = 0, topSureSn = 0, topAdet = 0;
+            let topMalzemeTl = 0, topIscilikTl = 0, topSatisTl = 0;
+
+            parcaListesi.forEach(p => {
+                const netKg = (p.genislik_mm * p.boy_mm * kalinlik) * (ozgul / 1000000.0);
+                const brutKg = netKg * (1.0 + (fireOrani / 100.0));
+                const malzemeTl = brutKg * kgFiyat;
+
+                const sureDk = (p.kesim_metre / kesimHiz) + ((p.patlatma_adedi * delmeSure) / 60.0);
+                const sureSn = sureDk * 60.0;
+                const iscilikTl = (sureDk / 60.0) * tezgahUcret;
+
+                const maliyetTl = malzemeTl + iscilikTl;
+                const satisTl = maliyetTl * (1.0 + (karMarj / 100.0));
+
+                p.birim_agirlik_kg = Number(brutKg.toFixed(3));
+                p.birim_sure_sn = Number(sureSn.toFixed(1));
+                p.birim_malzeme_tl = Number(malzemeTl.toFixed(2));
+                p.birim_iscilik_tl = Number(iscilikTl.toFixed(2));
+                p.birim_satis_tl = Number(satisTl.toFixed(2));
+
+                topAdet += p.adet;
+                topAgirlik += brutKg * p.adet;
+                topKesimM += p.kesim_metre * p.adet;
+                topDelik += p.patlatma_adedi * p.adet;
+                topSureSn += sureSn * p.adet;
+                topMalzemeTl += malzemeTl * p.adet;
+                topIscilikTl += iscilikTl * p.adet;
+                topSatisTl += satisTl * p.adet;
+            });
+
+            const netKarTl = topSatisTl - (topMalzemeTl + topIscilikTl);
+            const genelToplamTl = topSatisTl * (1.0 + (kdvOrani / 100.0));
+
+            document.getElementById("kpiKalem").innerText = `${parcaListesi.length} Kalem (${topAdet} Adet)`;
+            document.getElementById("kpiKesim").innerText = `${topKesimM.toFixed(1)} m / ${topDelik} delik`;
+            document.getElementById("kpiSure").innerText = `${(topSureSn / 60.0).toFixed(1)} dk`;
+            document.getElementById("kpiAgirlik").innerText = `${topAgirlik.toFixed(2)} kg`;
+            document.getElementById("kpiNetKar").innerText = `${netKarTl.toFixed(2)} TL`;
+            document.getElementById("kpiGenelToplam").innerText = `${genelToplamTl.toFixed(2)} TL`;
+
+            if (topSatisTl > 0) {
+                const pMat = Math.round((topMalzemeTl / topSatisTl) * 100);
+                const pLab = Math.round((topIscilikTl / topSatisTl) * 100);
+                const pProf = Math.max(0, 100 - pMat - pLab);
+                document.getElementById("barMat").style.width = pMat + "%";
+                document.getElementById("barLab").style.width = pLab + "%";
+                document.getElementById("barProf").style.width = pProf + "%";
+                document.getElementById("barLabelMat").innerText = `Hammadde: %${pMat} (${topMalzemeTl.toFixed(0)} TL)`;
+                document.getElementById("barLabelLab").innerText = `Lazer İşçilik: %${pLab} (${topIscilikTl.toFixed(0)} TL)`;
+                document.getElementById("barLabelProf").innerText = `Net Kâr: %${pProf} (${netKarTl.toFixed(0)} TL)`;
+            }
+
+            renderTable();
+            updatePreviewPanel(activeIndex);
+        }
+
+        function updateMatrixPresets() {
+            const mat = MATERIAL_MATRIX[malzemeSelect.value];
+            const thk = THICKNESS_PRESETS[kalinlikSelect.value] || { speed: 3.0, pierce: 1.0 };
+            kgFiyatInput.value = mat.price;
+            ozgulInput.value = mat.density;
+            kesimHizInput.value = (thk.speed * mat.speedFactor).toFixed(2);
+            delmeSureInput.value = thk.pierce.toFixed(1);
+            gasBadge.innerText = "Gaz: " + mat.gas;
+            recalculateAllLive();
+        }
+
+        malzemeSelect.addEventListener("change", updateMatrixPresets);
+        kalinlikSelect.addEventListener("change", updateMatrixPresets);
+        document.querySelectorAll(".live-param").forEach(inp => {
+            inp.addEventListener("input", recalculateAllLive);
+        });
+
+        function updatePreviewPanel(idx) {
+            if (!parcaListesi.length) {
+                document.getElementById("activePartName").innerText = "Parça Bekleniyor...";
+                document.getElementById("svgContainer").innerHTML = '<p class="text-xs text-slate-500 font-mono">Sol panelden DXF dosyalarını sürükleyin veya seçin</p>';
+                return;
+            }
+            activeIndex = Math.min(Math.max(idx, 0), parcaListesi.length - 1);
+            const p = parcaListesi[activeIndex];
+            document.getElementById("activePartName").innerText = p.dosya_adi;
+            document.getElementById("svgContainer").innerHTML = p.svg_cizim;
+            document.getElementById("detEbat").innerText = p.ebat_metin;
+            document.getElementById("detKesim").innerText = p.kesim_metre + " m";
+            document.getElementById("detDelik").innerText = p.patlatma_adedi + " adet";
+            document.getElementById("detSure").innerText = p.birim_sure_sn + " sn";
+            document.getElementById("detAgirlik").innerText = p.birim_agirlik_kg + " kg";
+            document.getElementById("detMalzemeTl").innerText = p.birim_malzeme_tl.toFixed(2) + " TL";
+            document.getElementById("detIscilikTl").innerText = p.birim_iscilik_tl.toFixed(2) + " TL";
+            document.getElementById("detSatisTl").innerText = p.birim_satis_tl.toFixed(2) + " TL";
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById("partsTableBody");
+            if (!parcaListesi.length) {
+                tbody.innerHTML = '<tr><td colspan="9" class="py-10 text-center text-slate-500">Liste boş. Analiz için sol panelden DXF dosyası yükleyin.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = "";
+            parcaListesi.forEach((p, idx) => {
+                const satirToplam = p.birim_satis_tl * p.adet;
+                const isSelected = idx === activeIndex;
+                const tr = document.createElement("tr");
+                tr.className = `cursor-pointer transition ${isSelected ? 'bg-orange-500/10 border-l-2 border-l-orange-500' : 'hover:bg-slate-800/50'}`;
+                tr.onclick = (e) => {
+                    if (e.target.tagName !== "INPUT" && e.target.tagName !== "BUTTON") {
+                        activeIndex = idx;
+                        renderTable();
+                        updatePreviewPanel(idx);
+                    }
+                };
+
+                tr.innerHTML = `
+                    <td class="py-2.5 px-2 font-mono text-slate-500">${idx + 1}</td>
+                    <td class="py-2.5 px-2 font-semibold text-white">${escapeHtml(p.dosya_adi)}</td>
+                    <td class="py-2.5 px-2 font-mono text-slate-300">${p.ebat_metin}</td>
+                    <td class="py-2.5 px-2 font-mono text-slate-400">${p.kesim_metre}m / ${p.patlatma_adedi}d</td>
+                    <td class="py-2.5 px-2 font-mono text-sky-400">${p.birim_agirlik_kg} kg</td>
+                    <td class="py-2.5 px-2">
+                        <div class="flex items-center justify-center space-x-1">
+                            <button type="button" data-act="dec" data-idx="${idx}" class="qty-btn w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold">-</button>
+                            <input type="number" min="1" value="${p.adet}" data-idx="${idx}" class="qty-input w-14 bg-slate-950 border border-slate-700 rounded px-1.5 py-1 text-white font-mono text-center">
+                            <button type="button" data-act="inc" data-idx="${idx}" class="qty-btn w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold">+</button>
+                        </div>
+                    </td>
+                    <td class="py-2.5 px-2 font-mono text-right text-slate-200">${p.birim_satis_tl.toFixed(2)} TL</td>
+                    <td class="py-2.5 px-2 font-mono text-right font-bold text-orange-400">${satirToplam.toFixed(2)} TL</td>
+                    <td class="py-2.5 px-1 text-right">
+                        <button type="button" data-del="${idx}" class="del-btn text-slate-500 hover:text-rose-400 px-1.5 font-bold">✕</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.querySelectorAll(".qty-btn").forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    const i = parseInt(btn.getAttribute("data-idx"));
+                    const act = btn.getAttribute("data-act");
+                    if (act === "inc") parcaListesi[i].adet += 1;
+                    else parcaListesi[i].adet = Math.max(1, parcaListesi[i].adet - 1);
+                    recalculateAllLive();
+                };
+            });
+
+            document.querySelectorAll(".qty-input").forEach(inp => {
+                inp.onchange = (e) => {
+                    const i = parseInt(inp.getAttribute("data-idx"));
+                    parcaListesi[i].adet = Math.max(1, parseInt(inp.value) || 1);
+                    recalculateAllLive();
+                };
+            });
+
+            document.querySelectorAll(".del-btn").forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    const i = parseInt(btn.getAttribute("data-del"));
+                    parcaListesi.splice(i, 1);
+                    recalculateAllLive();
+                };
+            });
+        }
+
+        async function uploadFilesToEngine(files) {
+            if (!files || files.length === 0) return;
+            const fd = new FormData();
+            let validCount = 0;
+            for (let i = 0; i < files.length; i++) {
+                if (files[i].name.toLowerCase().endsWith(".dxf")) {
+                    fd.append("files", files[i]);
+                    validCount++;
+                }
+            }
+            if (validCount === 0) {
+                alert("Lütfen .dxf uzantılı CAD dosyası seçin!");
+                return;
+            }
+            try {
+                const res = await fetch("/api/dxf-analiz", { method: "POST", body: fd });
+                const data = await res.json();
+                if (!res.ok) {
+                    alert("Hata: " + (data.detail || "DXF okunamadı"));
+                    return;
+                }
+                const append = document.getElementById("appendMode").checked;
+                if (append && parcaListesi.length > 0) {
+                    parcaListesi = parcaListesi.concat(data.parcalar);
+                } else {
+                    parcaListesi = data.parcalar;
+                    activeIndex = 0;
+                }
+                recalculateAllLive();
+            } catch (error) {
+                alert("DXF yüklenirken sunucuya ulaşılamadı. Lütfen tekrar deneyin.");
+            }
+        }
+
+        fileInput.addEventListener("change", (e) => {
+            uploadFilesToEngine(e.target.files);
+            fileInput.value = "";
+        });
+
+        dropzone.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            dropzone.classList.add("border-orange-500", "bg-slate-900");
+        });
+        dropzone.addEventListener("dragleave", () => {
+            dropzone.classList.remove("border-orange-500", "bg-slate-900");
+        });
+        dropzone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropzone.classList.remove("border-orange-500", "bg-slate-900");
+            if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+                uploadFilesToEngine(e.dataTransfer.files);
+            }
+        });
+
+        async function loadDemo10Parts() {
+            const res = await fetch("/api/ornek-10-parca");
+            const data = await res.json();
+            if (res.ok) {
+                parcaListesi = data.parcalar;
+                activeIndex = 0;
+                recalculateAllLive();
+            }
+        }
+
+        
+        document.getElementById("clearListBtn").onclick = () => {
+            parcaListesi = [];
+            recalculateAllLive();
+        };
+
+        document.getElementById("pdfBtn").onclick = async () => {
+            if (!parcaListesi.length) {
+                alert("Önce parça yükleyin!");
+                return;
+            }
+            const mat = MATERIAL_MATRIX[malzemeSelect.value];
+            const payload = {
+                atolye_adi: document.getElementById("atolyeAdi").value,
+                musteri_adi: document.getElementById("musteriAdi").value,
+                teklif_notu: document.getElementById("teklifNotu").value,
+                malzeme_adi: mat.name,
+                kalinlik_mm: parseFloat(kalinlikSelect.value),
+                kesim_gazi: mat.gas,
+                kdv_orani: parseFloat(document.getElementById("kdvOrani").value) || 20.0,
+                kalemler: parcaListesi
+            };
+            try {
+                const res = await fetch("/api/kurumsal-pdf-indir", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) {
+                    const data = await res.json();
+                    alert("PDF oluşturulamadı: " + (data.detail || "İstek reddedildi."));
+                    return;
+                }
+                const blob = await res.blob();
+                const a = document.createElement("a");
+                a.href = window.URL.createObjectURL(blob);
+                a.download = "Sariguzel_Teklif_Resmi_Form.pdf";
+                a.click();
+                window.URL.revokeObjectURL(a.href);
+            } catch (error) {
+                alert("PDF oluşturulurken sunucuya ulaşılamadı. Lütfen tekrar deneyin.");
+            }
+        };
+
+        document.getElementById("csvBtn").onclick = () => {
+            if (!parcaListesi.length) return;
+            const rows = ["\uFEFFParca Adi;Ebat (mm);Kesim Metresi (m);Patlatma Adedi;Birim Agirlik (kg);Birim Sure (sn);Adet;Birim Satis (TL);Toplam Tutar (TL)"];
+            parcaListesi.forEach(p => {
+                rows.push([
+                    p.dosya_adi,
+                    p.ebat_metin,
+                    p.kesim_metre,
+                    p.patlatma_adedi,
+                    p.birim_agirlik_kg,
+                    p.birim_sure_sn,
+                    p.adet,
+                    p.birim_satis_tl,
+                    (p.birim_satis_tl * p.adet).toFixed(2)
+                ].map(csvCell).join(";"));
+            });
+            const blob = new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8;" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "Sariguzel_Teklif_Tablosu.csv";
+            a.click();
+        };
+
+        // Sayfa açıldığında 10 endüstriyel parçayı otomatik hazır getir
+        window.addEventListener("DOMContentLoaded", () => {
+            // Otomatik demo yükleme kapalı
+        });
+    </script>
+</body>
+</html>
