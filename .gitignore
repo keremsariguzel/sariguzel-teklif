@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+test_dxf/
+*.dxf
+*.pdf
+cloudflared*
+fix_*.py
+make_dxf.py
